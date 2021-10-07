@@ -9,17 +9,27 @@ class Route{
 
     private $pathname;
     private $middlewares;
-    private $index = 0;
+    private $response;
+    private $request;
 
     function __construct(String $pathname,Array $middlewares){
         $this->pathname = $pathname;
         $this->middlewares = $middlewares;
+        $this->response = new Response();
+        $this->request = new Request();
     }
 
-    public function call(){
-        if(count($this->middlewares) > 0)
-            $this->middlewares[$this->index](new Request(), new Response(), $this->middlewares[++$this->index] ?? null);
+    public function call($index = 0){
+        $GLOBALS['index'] = $index;
+        if(count($this->middlewares) > 0){
+            $this->middlewares[$index]($this->request, $this->response, function(){
+                global $index;
+                $this->call($index + 1);
+            });
+        }
     }
 
     public function getPath(){ return $this->pathname; }
+
+    public function getMiddlewares(){ return $this->middlewares; }
 }
