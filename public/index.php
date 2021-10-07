@@ -17,7 +17,7 @@ $app->get('/', function(Request $req, Response $res, $next){
 },function (Request $req,Response $res, $next){
     $next();
 },function (Request $req,Response $res){
-    $res->send('ok');
+    echo 'Done<br/>';
 });
 
 $app->post('/', function(Request $req, Response $res, $next){
@@ -29,7 +29,7 @@ $app->post('/', function(Request $req, Response $res, $next){
 },function (Request $req,Response $res, $next){
     $next();
 },function (Request $req,Response $res){
-    $res->send('Lol');
+    echo 'Done<br/>';
 });
 
 $app->bootstrap();
