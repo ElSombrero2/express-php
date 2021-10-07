@@ -11,8 +11,8 @@ $app->use(null, Express::json());
 $app->use(null, Express::urlencoded());
 
 $app->get('/', function(Request $req, Response $res){
-    $res->json([
-        'message' => 'done'
+    $res->render('index', [
+        'title' => 'Mon Titre'
     ]);
 });
 
