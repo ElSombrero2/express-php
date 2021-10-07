@@ -1,4 +1,7 @@
 <?php
+
+    namespace Express\Http; 
+
     class Response{
 
         private $code = 200;
