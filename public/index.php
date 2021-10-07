@@ -11,11 +11,15 @@ $app->use(null, Express::json());
 $app->use(null, Express::urlencoded());
 
 $app->get('/', function(Request $req, Response $res){
-
+    $res->json([
+        'message' => 'done'
+    ]);
 });
 
 $app->post('/', function(Request $req, Response $res){
-    var_dump($req->body);
+    $res->json([
+        'message' => 'done'
+    ]);
 });
 
 $app->bootstrap();
