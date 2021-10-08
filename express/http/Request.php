@@ -8,9 +8,11 @@ class Request{
     private $remote_port;
     private $server_port;
     private $method;
+
     public $headers;
     public $body;
     public $query;
+    public $params;
 
     public function __construct(){
         $this->path = $_SERVER['REQUEST_URI'];

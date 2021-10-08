@@ -10,10 +10,8 @@ $app = new Express();
 $app->use(null, Express::json());
 $app->use(null, Express::urlencoded());
 
-$app->get('/', function(Request $req, Response $res){
-    $res->render('index', [
-        'title' => 'Mon Titre'
-    ]);
+$app->get('/user/{id}/name/{id2}', function(Request $req, Response $res){
+    var_dump($req->params);
 });
 
 $app->post('/', function(Request $req, Response $res){

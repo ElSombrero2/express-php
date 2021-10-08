@@ -7,6 +7,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1><?= $title?></h1>
+    <div class="container">
+        <h1><?= $title?></h1>
+    </div>
 </body>
 </html>

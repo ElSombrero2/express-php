@@ -66,6 +66,10 @@ class Express{
                 if($arr[$i]->getPath() === $path){
                     $arr[$i]->call($req, $res, 0);
                     $is_called = true;
+                }else if($arr[$i]->match($path)){
+                    $req->params = $arr[$i]->extract($path);
+                    $arr[$i]->call($req, $res, 0);
+                    $is_called = true;
                 }
             }
         }
@@ -76,6 +80,9 @@ class Express{
         $path = $req->GetPath();
         for($i = 0; $i < count($arr); $i++){
             if($arr[$i]->getPath() === $path || $arr[$i]->getPath() === null){
+                $arr[$i]->call($req, $res, 0);
+            }else if($arr[$i]->match($path)){
+                $req->params = $arr[$i]->extract($path);
                 $arr[$i]->call($req, $res, 0);
             }
         }
