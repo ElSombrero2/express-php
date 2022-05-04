@@ -1,35 +1,23 @@
 <?php
+require '../autoload.php';
 
 use Express\Core\Express;
 use Express\Http\Request;
 use Express\Http\Response;
 
-require '../autoload.php';
-
 $app = new Express();
 
-$app->get('/', function(Request $req, Response $res, $next){
-    $next();
-}, function (Request $req,Response $res, $next){
-    $next();
-},function (Request $req,Response $res, $next){
-    $next();
-},function (Request $req,Response $res, $next){
-    $next();
-},function (Request $req,Response $res){
-    echo 'Done<br/>';
+$app->use(null, Express::json());
+$app->use(null, Express::urlencoded());
+
+$app->get('/user/{id}/name/{id2}', function(Request $req, Response $res){
+    var_dump($req->params);
 });
 
-$app->post('/', function(Request $req, Response $res, $next){
-    $next();
-}, function (Request $req,Response $res, $next){
-    $next();
-},function (Request $req,Response $res, $next){
-    $next();
-},function (Request $req,Response $res, $next){
-    $next();
-},function (Request $req,Response $res){
-    echo 'Done<br/>';
+$app->post('/', function(Request $req, Response $res){
+    $res->json([
+        'message' => 'done'
+    ]);
 });
 
 $app->bootstrap();
